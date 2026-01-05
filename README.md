@@ -97,7 +97,7 @@ This repository uses the **MADAR Corpus** for multidialect Arabic translation. T
 
 #### Step 1: Download MADAR Corpus
 
-Download the MADAR corpus from the official source. The corpus comes as separate TSV files, one for each dialect/language pair.
+Download the MADAR corpus from the [official source](https://camel.abudhabi.nyu.edu/madar-parallel-corpus/?). The corpus comes as separate TSV files, one for each dialect/language pair.
 
 #### Step 2: Combine MADAR Files into Single TSV
 
