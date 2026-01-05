@@ -1,4 +1,4 @@
-# Multidialect Arabic Translation with Qwen-2.5
+# Arabic Dialect Translation with Small LLMs: Enhancing through Reasoning-Oriented Reinforcement Learning
 
 This repository contains code for training and evaluating Qwen-2.5 models on multidialect Arabic translation tasks. It supports three main approaches: **Zero-shot evaluation**, **Supervised Fine-Tuning (SFT)**, and **Reinforcement Learning (RL)** using Group Relative Policy Optimization (GRPO).
 
@@ -36,7 +36,7 @@ Fine-tunes Qwen-2.5-7B using LoRA (Low-Rank Adaptation) for multidialect transla
 - **English → Dialect**: Translating English to Arabic dialects
 
 ### Reinforcement Learning (RL)
-Trains Qwen-2.5-1.5B and Qwen-2.5-3B models using Group Relative Policy Optimization (GRPO) with BLEU score rewards, as well as a think-then-translate output template.
+Trains Qwen-2.5-1.5B and Qwen-2.5-3B models using Group Relative Policy Optimization (GRPO) with BLEU score rewards, as well as a think-then-translate output template to incentivize reasoning.
 
 ## Quick Start
 
