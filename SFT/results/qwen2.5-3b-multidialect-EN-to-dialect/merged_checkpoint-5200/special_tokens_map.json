@@ -1,0 +1,44 @@
+{
+  "additional_special_tokens": [
+    "<TGT:ALE>",
+    "<TGT:ALG>",
+    "<TGT:ALX>",
+    "<TGT:AMM>",
+    "<TGT:ASW>",
+    "<TGT:BAG>",
+    "<TGT:BAS>",
+    "<TGT:BEI>",
+    "<TGT:BEN>",
+    "<TGT:CAI>",
+    "<TGT:DAM>",
+    "<TGT:DOH>",
+    "<TGT:FES>",
+    "<TGT:JED>",
+    "<TGT:JER>",
+    "<TGT:KHA>",
+    "<TGT:MOS>",
+    "<TGT:MSA>",
+    "<TGT:MUS>",
+    "<TGT:RAB>",
+    "<TGT:RIY>",
+    "<TGT:SAL>",
+    "<TGT:SAN>",
+    "<TGT:SFX>",
+    "<TGT:TRI>",
+    "<TGT:TUN>"
+  ],
+  "eos_token": {
+    "content": "<|endoftext|>",
+    "lstrip": false,
+    "normalized": false,
+    "rstrip": false,
+    "single_word": false
+  },
+  "pad_token": {
+    "content": "<|endoftext|>",
+    "lstrip": false,
+    "normalized": false,
+    "rstrip": false,
+    "single_word": false
+  }
+}
