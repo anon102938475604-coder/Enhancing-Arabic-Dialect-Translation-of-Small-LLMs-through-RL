@@ -36,7 +36,7 @@ Fine-tunes Qwen-2.5-7B using LoRA (Low-Rank Adaptation) for multidialect transla
 - **English → Dialect**: Translating English to Arabic dialects
 
 ### Reinforcement Learning (RL)
-Trains Qwen-2.5-1.5B and Qwen-2.5-3B models using Group Relative Policy Optimization (GRPO) with BLEU score rewards.
+Trains Qwen-2.5-1.5B and Qwen-2.5-3B models using Group Relative Policy Optimization (GRPO) with BLEU score rewards, as well as a think-then-translate output template.
 
 ## Quick Start
 
@@ -454,10 +454,10 @@ You can change model paths by setting:
   <img src="assets/images/RL-3B-English-to-Dialect.png" width="45%" />
 </div>
 
-*Figure 3: 3B RL training performance using GRPO with BLEU rewards. Left: Dialect → English. Right: English → Dialect.*
+*Figure 4: 3B RL training performance using GRPO with BLEU rewards. Left: Dialect → English. Right: English → Dialect.*
 
 ### Summary of All Results
-![Summary](summary.png)
+![Summary](assets/images/summary.png)
 
 ## Expected Outputs
 
