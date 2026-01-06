@@ -5,7 +5,7 @@ This repository contains code for training and evaluating Qwen-2.5 models on mul
 ## Repository Structure
 
 ```
-Pretrained/                    # Zero-shot evaluation scripts
+Pretrained/                    # Pretrained evaluation scripts
 ├── pretrained_bidirectional_all_dialects.py
 └── pretrained_bidirectional_all_dialects.sh
 SFT/                          # Supervised Fine-Tuning scripts
