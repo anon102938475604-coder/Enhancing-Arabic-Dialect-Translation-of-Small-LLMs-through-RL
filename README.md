@@ -1,13 +1,13 @@
 # Arabic Dialect Translation with Small LLMs: Enhancing through Reasoning-Oriented Reinforcement Learning
 
-This repository contains code for training and evaluating Qwen-2.5 models on multidialect Arabic translation tasks. It supports three main approaches: **Zero-shot evaluation**, **Supervised Fine-Tuning (SFT)**, and **Reinforcement Learning (RL)** using Group Relative Policy Optimization (GRPO).
+This repository contains code for training and evaluating Qwen-2.5 models on multidialect Arabic translation tasks. It supports three main approaches: **Pretrained (out-of-the-box) evaluation**, **Supervised Fine-Tuning (SFT)**, and **Reinforcement Learning (RL)** using Group Relative Policy Optimization (GRPO).
 
 ## Repository Structure
 
 ```
-Zero-shot/                    # Zero-shot evaluation scripts
-├── zero_shot_bidirectional_all_dialects.py
-└── zero_shot_bidirectional_all_dialects.sh
+Pretrained/                    # Zero-shot evaluation scripts
+├── pretrained_bidirectional_all_dialects.py
+└── pretrained_bidirectional_all_dialects.sh
 SFT/                          # Supervised Fine-Tuning scripts
 ├── multidialect_sft_dialect_to_en.py
 ├── multidialect_sft_dialect_to_en.sh
@@ -27,7 +27,7 @@ requirements.txt              # Python dependencies
 
 ## Overview
 
-### Zero-Shot Evaluation
+### Pretrained Evaluation
 Evaluates the base Qwen-2.5-7B model without any fine-tuning on bidirectional translation tasks (English ↔ Arabic dialects).
 
 ### Supervised Fine-Tuning (SFT)
@@ -41,7 +41,7 @@ Trains Qwen-2.5-1.5B and Qwen-2.5-3B models using Group Relative Policy Optimiza
 ## Quick Start
 
 > **Quick Reference**: 
-> - **Zero-shot**: Fastest, no training, 1 GPU, Qwen-2.5-7B → `Zero-shot/zero_shot_bidirectional_all_dialects.sh`
+> - **Pretrained**: Fastest, no training, 1 GPU, Qwen-2.5-7B → `Pretrained/pretrained_bidirectional_all_dialects.sh`
 > - **SFT**: Balanced, 2 GPUs, LoRA fine-tuning, Qwen-2.5-7B → `SFT/multidialect_sft_*.sh`
 > - **RL**: Best results, 3+ GPUs, GRPO training, Qwen-2.5-1.5B/3B → `RL/run_grpo_3gpu.sh`
 
@@ -52,7 +52,7 @@ Trains Qwen-2.5-1.5B and Qwen-2.5-3B models using Group Relative Policy Optimiza
 - **Python**: 3.10+ (recommended)
 - **CUDA**: 11.8+ (for GPU acceleration)
 - **GPUs**: 
-  - Zero-shot: 1x A100 or equivalent (24GB+ VRAM)
+  - Pretrained: 1x A100 or equivalent (24GB+ VRAM)
   - SFT: 2x A100 or equivalent (40GB+ VRAM each)
   - RL: 3x A100 80GB (recommended) or equivalent
 
@@ -169,7 +169,7 @@ The training scripts automatically:
 - Convert wide format (one row per sentence pair) to tall format (one row per dialect pair)
 - Handle missing translations (skips empty cells)
 
-#### For SFT and Zero-Shot
+#### For SFT and Pretrained
 
 These methods work directly with TSV files. Update the `DATA_FILE` path in the Python scripts:
 
@@ -215,13 +215,13 @@ The script will:
 
 ## Running the Experiments
 
-### Zero-Shot Evaluation
+### Pretrained Evaluation
 
 Evaluates the base model without fine-tuning on bidirectional translation.
 
 #### Step 1: Update Configuration
 
-Edit `Zero-shot/zero_shot_bidirectional_all_dialects.py`:
+Edit `Pretrained/pretrained_bidirectional_all_dialects.py`:
 
 ```python
 DATA_FILE = "path/to/your/data.tsv"
@@ -234,14 +234,14 @@ USE_COMET = True  # Set to False if COMET model unavailable
 
 **Option A: Direct execution**
 ```bash
-cd Zero-shot
-CUDA_VISIBLE_DEVICES=0 python zero_shot_bidirectional_all_dialects.py
+cd Pretrained
+CUDA_VISIBLE_DEVICES=0 python pretrained_bidirectional_all_dialects.py
 ```
 
 **Option B: Using SLURM (if available)**
 ```bash
-# Edit zero_shot_bidirectional_all_dialects.sh to set paths
-sbatch zero_shot_bidirectional_all_dialects.sh
+# Edit pretrained_bidirectional_all_dialects.sh to set paths
+sbatch pretrained_bidirectional_all_dialects.sh
 ```
 
 #### Outputs
@@ -405,11 +405,11 @@ python compute_per_dialect_bleu.py \
 ### Model Configuration
 
 **Model sizes used in experiments:**
-- **Zero-shot and SFT baselines**: Qwen-2.5-7B
+- **Pretrained and SFT baselines**: Qwen-2.5-7B
 - **RL training**: Qwen-2.5-1.5B and Qwen-2.5-3B
 
 You can change model paths by setting:
-- `MODEL_ID` in SFT/Zero-shot scripts
+- `MODEL_ID` in SFT/Pretrained scripts
 - `model_path` in RL scripts
 
 ### Evaluation Metrics
@@ -419,14 +419,14 @@ You can change model paths by setting:
 
 ## Results
 
-### Zero-Shot Results
+### Pretrained Results
 
 <div align="center">
   <img src="assets/images/Zero-shot-Dialect-to-English.png" width="45%" />
   <img src="assets/images/Zero-shot-English-to-Dialect.png" width="45%" />
 </div>
 
-*Figure 1: Zero-shot performance on bidirectional translation (Qwen-2.5-7B). Left: Dialect → English. Right: English → Dialect.*
+*Figure 1: Pretrained (no finetuning) performance on bidirectional translation (Qwen-2.5-7B). Left: Dialect → English. Right: English → Dialect.*
 
 ### Supervised Fine-Tuning (SFT) Results
 
@@ -461,7 +461,7 @@ You can change model paths by setting:
 
 ## Expected Outputs
 
-### Zero-Shot
+### Pretrained
 - Per-dialect BLEU/COMET scores for both translation directions
 - CSV files with predictions and references
 
@@ -511,7 +511,7 @@ You can change model paths by setting:
 - All scripts use deterministic seeds (SEED=42) for reproducibility
 - SFT scripts automatically handle special token addition and embedding resizing
 - RL training requires significant GPU memory (recommended: 3x A100 80GB)
-- Zero-shot evaluation is the fastest method and requires minimal resources (1 GPU)
+- Pretrained evaluation is the fastest method and requires minimal resources (1 GPU)
 - SFT provides a good balance between performance and training time (2 GPUs recommended)
 - RL training is the most resource-intensive but can achieve best results (3+ GPUs required)
 - The RL framework (VERL) uses Ray for distributed training coordination
